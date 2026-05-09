@@ -20,6 +20,13 @@ FetchContent_MakeAvailable(SDL3)
 
 add_executable(DemoEngine
     src/main.cpp
+    external/glad/src/gl.c
 )
 
-target_link_libraries(DemoEngine PRIVATE SDL3::SDL3-static)
+target_include_directories(DemoEngine PRIVATE
+    external/glad/include
+)
+
+target_link_libraries(DemoEngine PRIVATE
+    SDL3::SDL3-static
+)
