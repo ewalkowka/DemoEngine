@@ -30,3 +30,9 @@ target_include_directories(DemoEngine PRIVATE
 target_link_libraries(DemoEngine PRIVATE
     SDL3::SDL3-static
 )
+
+add_custom_command(TARGET DemoEngine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/shaders
+        $<TARGET_FILE_DIR:DemoEngine>/shaders
+)
