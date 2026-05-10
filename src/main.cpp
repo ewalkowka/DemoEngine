@@ -184,9 +184,10 @@ int main()
 
     float vertices[] =
     {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+        // x,y,z                 // r,g,b
+        -0.5f, -0.5f, 0.0f,      0.0f, 1.0f, 0.0f,
+         0.5f, -0.5f, 0.0f,      0.0f, 0.0f, 1.0f,
+         0.0f,  0.5f, 0.0f,      1.0f, 0.0f, 0.0f
     };
 
     unsigned int vao = 0;
@@ -205,9 +206,22 @@ int main()
         3,
         GL_FLOAT,
         GL_FALSE,
-        3 * sizeof(float),
+        6 * sizeof(float),
         nullptr
     );
+
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(
+        1,
+        3,
+        GL_FLOAT,
+        GL_FALSE,
+        6 * sizeof(float),
+        reinterpret_cast<void*>(3 * sizeof(float))
+    );
+
+    glEnableVertexAttribArray(1);
 
     glEnableVertexAttribArray(0);
 
