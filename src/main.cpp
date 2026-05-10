@@ -21,10 +21,14 @@ int main()
 
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+    // Temporary default window size before settings system is added
+    int width = 1280;
+    int height = 720;
+
     SDL_Window* window = SDL_CreateWindow(
         "Demo Engine",
-        1280,
-        720,
+        width,
+        height,
         SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
     );
 
@@ -93,6 +97,13 @@ int main()
                 }
             }
         }
+
+        SDL_GetWindowSizeInPixels(window, &width, &height);
+
+        glViewport(0, 0, width, height);
+
+        glClearColor(0.05f, 0.15f, 0.15f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
 
         SDL_GL_SwapWindow(window);
     }
